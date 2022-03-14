@@ -17,6 +17,10 @@
                 <th scope="col">name</th>
                 <th scope="col">username</th>
                 <th scope="col">email</th>
+                <th scope="col">address</th>
+                <th scope="col">phone</th>
+                <th scope="col">website</th>
+                <th scope="col">company</th>
               </tr>
             </thead>
             <tbody id="user_table"></tbody>
@@ -52,6 +56,14 @@
         return tr;
       }
 
+      function FormatAddressObject(address){
+        return `Street: ${address.street}\nSuite: ${address.suite}\nCity${address.city}\n Zip-Code:${address.zipcode}\n Geo: Lat: ${address.geo.lat}, Lng: ${address.geo.lng}`;
+      }
+
+      function FormatCompanyInfo(companyInfo){
+        return `Name: ${companyInfo.name}\nCatchphrase: ${companyInfo.catchPhrase}\nBS: ${companyInfo.bs}`;
+      }
+
       function CreateTableDatum(value){
         let td = document.createElement("td");
         td.textContent = value;
@@ -69,7 +81,11 @@
           let table_datums = [
             CreateTableDatum(user.name),
             CreateTableDatum(user.username),
-            CreateTableDatum(user.email)
+            CreateTableDatum(user.email),
+            CreateTableDatum(FormatAddressObject(user.address)),
+            CreateTableDatum(user.phone),
+            CreateTableDatum(user.website),
+            CreateTableDatum(FormatCompanyInfo(user.company))
           ];
 
           tbody.appendChild(CreateTableRow(user.id, table_datums));
