@@ -74,7 +74,8 @@
 
       CallExternalAPI().then(res=>{
 
-        let tbody = document.getElementById("user_table");
+        let tbody;
+        console.log(tbody = document.getElementById("user_table"));
 
         res.forEach((user)=>{
 
